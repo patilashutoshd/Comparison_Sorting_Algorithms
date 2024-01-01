@@ -262,32 +262,21 @@
 
         // This Function Changes Sie of Bars
 
-        // Function to change size of bars
+        // Function to change size of bars(Shrink)
         function changeSize() {
+            const shrinkFactor = 0.7; // Factor to shrink the bars by
             const minHeight = 20; // Minimum height for bars
             const maxHeight = 200; // Maximum height for bars
 
-            // Store the original order before changing size
-            const originalBars = [...bars];
-
-            // Update bar heights with random values within the specified range
             bars.forEach(bar => {
-                bar.height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+                // Reduce the height within the specified range
+                const newHeight = Math.max(minHeight, bar.height * shrinkFactor);
+                bar.height = Math.min(maxHeight, newHeight);
             });
-
-            insertionSort();
-            // selectionSort();
-            // bubbleSort();
-            // quickSort();
-            // mergeSort(); 
-            // shellSort();
-            // Match the new heights with their corresponding values from the original order
-            for (let i = 0; i < bars.length; i++) {
-                bars[i].value = originalBars[i].value;
-            }
 
             displayBars();
         }
+
 
         // display of bars
         displayBars();
